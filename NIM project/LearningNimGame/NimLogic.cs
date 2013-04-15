@@ -77,5 +77,29 @@ namespace LearningNimGame
             return false;
         }
 
+        /// <summary>
+        /// Used to provide a list of all possible BoardStates.
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<BoardState> EveryPossibleBoardState()
+        {
+            for (int rowA = 0; rowA <= 3; rowA++)
+            {
+                for (int rowB = 0; rowB <= 5; rowB++)
+                {
+                    for (int rowC = 0; rowC <= 7; rowC++)
+                    {
+                        BoardState b = new BoardState();
+                        b.Frequency = 0;
+                        b.StateValue = 0;
+                        b.RowACount = rowA;
+                        b.RowBCount = rowB;
+                        b.RowCCount = rowC;
+
+                        yield return b;
+                    }
+                }
+            }
+        }
     }
 }

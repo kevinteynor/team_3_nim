@@ -160,3 +160,68 @@ I forgot modify Game.cs to use ChooseRandomMoveWithinGameConstraints rather than
 the previous build is broken.
 
 :End
+
+1:30PM 4/15/2013 - Justin Ward
+
+Start:
+
+        //Replaced by NimLogic.EveryPossibleBoardState()
+        //public static BoardState[] GetAllPossibleStates()
+        //{
+        //    BoardState[] states = new BoardState[192];
+        //    int i = 0;
+
+        //    for (int rA = 0; rA <= 3; rA++)
+        //    {
+        //        for (int rB = 0; rB <= 5; rB++)
+        //        {
+        //            for (int rC = 0; rC <= 7; rC++)
+        //            {
+        //                BoardState b = new BoardState();
+        //                b.Frequency = 0;
+        //                b.StateValue = 0;
+        //                b.RowACount = rA;
+        //                b.RowBCount = rB;
+        //                b.RowCCount = rC;
+
+        //                states[i] = new BoardState(b);
+        //                i++;
+        //            }
+        //        }
+        //    }
+
+        //    return states;
+        //}
+
+I moved GetAllPossibleStates from BoardState.cs to NimLogic.cs. I believe this is a better place for this method
+as it is already static, and it doesn't feel right being a member of BoardState. I also replaced the return
+type of BoardState[] with an IEnumerable<BoardState>. This is in response to the Computer Science base rule
+of favoring Iterators to Lists. This way we can use this method in LINQ queries to find a specific state
+or for it's original use of compiling a list of all BoardStates.
+
+        /// <summary>
+        /// Used to provide a list of all possible BoardStates.
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<BoardState> EveryPossibleBoardState()
+        {
+            for (int rowA = 0; rowA <= 3; rowA++)
+            {
+                for (int rowB = 0; rowB <= 5; rowB++)
+                {
+                    for (int rowC = 0; rowC <= 7; rowC++)
+                    {
+                        BoardState b = new BoardState();
+                        b.Frequency = 0;
+                        b.StateValue = 0;
+                        b.RowACount = rowA;
+                        b.RowBCount = rowB;
+                        b.RowCCount = rowC;
+
+                        yield return b;
+                    }
+                }
+            }
+        }
+
+:End

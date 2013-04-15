@@ -102,31 +102,32 @@ namespace LearningNimGame
             return !(a == b);
         }
 
-        public static BoardState[] GetAllPossibleStates()
-        {
-            BoardState[] states = new BoardState[192];
-            int i = 0;
+        //Replaced by NimLogic.EveryPossibleBoardState()
+        //public static BoardState[] GetAllPossibleStates()
+        //{
+        //    BoardState[] states = new BoardState[192];
+        //    int i = 0;
 
-            for (int rA = 0; rA <= 3; rA++)
-            {
-                for (int rB = 0; rB <= 5; rB++)
-                {
-                    for (int rC = 0; rC <= 7; rC++)
-                    {
-                        BoardState b = new BoardState();
-                        b.Frequency = 0;
-                        b.StateValue = 0;
-                        b.RowACount = rA;
-                        b.RowBCount = rB;
-                        b.RowCCount = rC;
+        //    for (int rA = 0; rA <= 3; rA++)
+        //    {
+        //        for (int rB = 0; rB <= 5; rB++)
+        //        {
+        //            for (int rC = 0; rC <= 7; rC++)
+        //            {
+        //                BoardState b = new BoardState();
+        //                b.Frequency = 0;
+        //                b.StateValue = 0;
+        //                b.RowACount = rA;
+        //                b.RowBCount = rB;
+        //                b.RowCCount = rC;
 
-                        states[i] = new BoardState(b);
-                        i++;
-                    }
-                }
-            }
+        //                states[i] = new BoardState(b);
+        //                i++;
+        //            }
+        //        }
+        //    }
 
-            return states;
-        }
+        //    return states;
+        //}
     }
 }

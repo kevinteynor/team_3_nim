@@ -20,7 +20,14 @@ namespace LearningNimGame
         {
             random = new Random();
             TempList = new List<BoardState>();
-            BoardData = BoardState.GetAllPossibleStates();
+
+            int count = 0;
+
+            foreach (var b in NimLogic.EveryPossibleBoardState())
+            {
+                BoardData[count] = b;
+                count++;
+            }
         }
 
         public void Start()
