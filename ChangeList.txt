@@ -1,0 +1,11 @@
+Group 3 - Learning Nim Game Change Log
+
+12:00 PM 4/15/2013 - Justin Ward
+
+Start:
+
+Added NimLogic.cs as a public static class for containing all methods which check and use Logic specific to the game of Nim.
+This class will be an example of Logical Cohesion, storing methods together that are related logically. Methods will
+be extracted from Game.cs and BoardState.cs into this class, where logical.
+
+:End
