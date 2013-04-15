@@ -19,7 +19,7 @@ namespace LearningNimGame
 
             if (menuOption == 1)
             {
-                //run PlaverVsAI game
+                game.RunPlayerVersusAIGame();
                 Console.ReadLine();
                 return true;
             }
@@ -28,7 +28,7 @@ namespace LearningNimGame
                 int numberOfGames = UserConsoleInput.ForceConsoleIntegerInput("How many games? ", "Invalid Input. ", 1, 1000000);
 
                 for (int i = 0; i < numberOfGames; i++)
-                    //Run AIvsAI game
+                    game.RunAIVersusAIGame();
 
                 Console.ReadLine();
                 return true;

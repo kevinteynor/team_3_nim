@@ -589,3 +589,12 @@ Added Run to NimGameConsoleLoop, left comments where incomplete. Commented out m
 re-factoring it to use the newly added classes. CURRENTLY BROKEN. WILL NOT WORK.
 
 :End
+
+4:10PM 4/15/2013 - Justin Ward
+
+Start:
+
+Added RunPlayerVersusAIGame and RunAIVersusAIGame to Game.cs, fixed Game.cs to use all the newly added classes. And modified
+Program to use NimGameConsoleLoop rather than calling Game.Start(), which has since been removed.
+
+:End

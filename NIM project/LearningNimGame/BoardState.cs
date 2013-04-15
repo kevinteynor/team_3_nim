@@ -31,19 +31,6 @@ namespace LearningNimGame
             this.Frequency = b.Frequency;
         }
 
-        //Moved to NimLogic.cs as IsMoveValid(BoardState bs1, BoardState bs2);
-        //public bool checkIfValid(BoardState change)
-        //{
-        //    if (this.RowACount > change.RowACount && (change.RowBCount == this.RowBCount && change.RowCCount == this.RowCCount))
-        //        return true;
-        //    if (this.RowBCount > change.RowBCount && (change.RowACount == this.RowACount && change.RowCCount == this.RowCCount))
-        //        return true;
-        //    if (this.RowCCount > change.RowCCount && (change.RowACount == this.RowACount && change.RowBCount == this.RowBCount))
-        //        return true;
-
-        //    return false;
-        //}
-
         public void ApplyNewData(BoardState state)
         {
             float meanVal = (float)Frequency * StateValue;  // multiply frequency by the value in order to incorporate new data
@@ -56,17 +43,17 @@ namespace LearningNimGame
         {
             Console.WriteLine();
 
-            Console.Write("Row A: (" + RowACount + ") ");
+            Console.Write("Row 1: (" + RowACount + ") ");
             for (uint i = 0; i < RowACount; ++i)
                 Console.Write('*');
             Console.WriteLine();
 
-            Console.Write("Row B: (" + RowBCount + ") ");
+            Console.Write("Row 2: (" + RowBCount + ") ");
             for (uint i = 0; i < RowBCount; ++i)
                 Console.Write('*');
             Console.WriteLine();
 
-            Console.Write("Row C: (" + RowCCount + ") ");
+            Console.Write("Row 3: (" + RowCCount + ") ");
             for (uint i = 0; i < RowCCount; ++i)
                 Console.Write('*');
             Console.WriteLine();
@@ -101,33 +88,5 @@ namespace LearningNimGame
         {
             return !(a == b);
         }
-
-        //Replaced by NimLogic.EveryPossibleBoardState()
-        //public static BoardState[] GetAllPossibleStates()
-        //{
-        //    BoardState[] states = new BoardState[192];
-        //    int i = 0;
-
-        //    for (int rA = 0; rA <= 3; rA++)
-        //    {
-        //        for (int rB = 0; rB <= 5; rB++)
-        //        {
-        //            for (int rC = 0; rC <= 7; rC++)
-        //            {
-        //                BoardState b = new BoardState();
-        //                b.Frequency = 0;
-        //                b.StateValue = 0;
-        //                b.RowACount = rA;
-        //                b.RowBCount = rB;
-        //                b.RowCCount = rC;
-
-        //                states[i] = new BoardState(b);
-        //                i++;
-        //            }
-        //        }
-        //    }
-
-        //    return states;
-        //}
     }
 }

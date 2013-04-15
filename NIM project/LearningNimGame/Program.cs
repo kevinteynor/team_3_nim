@@ -10,7 +10,9 @@ namespace LearningNimGame
         static void Main(string[] args)
         {
             Game game = new Game();
-            //game.Start();
+            NimGameConsoleLoop loop = new NimGameConsoleLoop();
+
+            while (loop.Run(game)) ;
         }
     }
 }
