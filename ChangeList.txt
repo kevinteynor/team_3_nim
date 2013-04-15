@@ -605,3 +605,16 @@ Start:
 
 Added another GetAllValidMoves() function in NimLogic.cs that takes in an existing list of weighted moves-- which allows for the next change:
 Cut down the TakeTurn() function in NimLearningAI.cs to use the GetAllValidMoves() created above to cut down on steps.
+
+:End
+
+5:40 4/15/2013 - Kevin Teynor
+
+Start:
+
+Fixed logic error inside of TakeTurn() where computers would have followed the exact same pattern over and over and over again.
+Cut out extra functions in NimLearningAI.cs.
+Extracted a "WeightBoardStates()" function into NimLogic, which cut down the boardState integration in the NimLearningAI class.
+Trimmed IntegrateIntoCatalog() function inside NimLearningAI.cs to use the extracted function.
+
+:End

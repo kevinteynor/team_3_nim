@@ -115,13 +115,24 @@ namespace LearningNimGame
                     yield return b;
             }
         }
-
         public static IEnumerable<BoardState> GetAllValidMoves(BoardState currentState, List<BoardState> weightedStateList)
         {
             foreach (var bs in weightedStateList)
             {
                 if (IsMoveValid(currentState, bs))
                     yield return bs;
+            }
+        }
+
+        public static void WeightBoardStates(ref List<BoardState> gameMovesList)
+        {
+            int weightSign = gameMovesList.Count % 2 == 0 ? 1 : -1;
+
+            for (int i = 0; i < gameMovesList.Count; i++)
+            {
+                float weight = (weightSign * i) / (float)gameMovesList.Count;
+                gameMovesList[i].StateValue = weight;
+                weightSign *= -1;
             }
         }
     }

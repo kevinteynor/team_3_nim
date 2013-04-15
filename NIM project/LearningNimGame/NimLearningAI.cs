@@ -30,44 +30,16 @@ namespace LearningNimGame
         }
 
         /// <summary>
-        /// Returns a list of moves from BoardStateCatalog which match
-        /// one of the validMoves passed in as a parameter.
-        /// </summary>
-        /// <param name="validMoves">A list of all valid moves from the current BoardState</param>
-        /// <returns>An equivelant list from BoardStateCatalog</returns>
-        private List<BoardState> GetCatalogBoardStates(List<BoardState> validMoves)
-        {
-            List<BoardState> valuableMoves = new List<BoardState>();
-
-            for (int i = 0; i < BoardStateCatalog.Count; ++i)
-            {
-                for (int j = 0; j < validMoves.Count; ++j)
-                {
-                    if (BoardStateCatalog[i].Equals(validMoves[j]))
-                    {
-                        valuableMoves.Add(new BoardState(BoardStateCatalog[i]));
-                    }
-                }
-            }
-            return valuableMoves;
-        }
-
-        /// <summary>
         /// Takes in all BoardStates that occured in a game, in reverse order,
         /// and applies a weight to each, and then applies that new data to the corresponding state
         /// in BoardStateCatalog.
         /// </summary>
-        /// <param name="boardStates">A list of states from a game, in reverse order</param>
-        public void ApplyGameDataToCatalog(List<BoardState> boardStates)
+        /// <param name="boardsToIntegrate">A list of states from a game, in reverse order</param>
+        public void IntegrateIntoCatalog(List<BoardState> boardsToIntegrate)
         {
-            int weightSign = boardStates.Count % 2 == 0 ? 1 : -1;
-
-            for (int i = 0; i < boardStates.Count; i++)
+            for (int i = 0; i < boardsToIntegrate.Count; i++)
             {
-                float weight = (weightSign * i) / (float)boardStates.Count;
-                boardStates[i].StateValue = weight;
-                BoardStateCatalog.First(b => b == boardStates[i]).ApplyNewData(boardStates[i]);
-                weightSign *= -1;
+                BoardStateCatalog.First(b => b == boardsToIntegrate[i]).ApplyNewData(boardsToIntegrate[i]);
             }
 
             GamesPlayed++;
@@ -75,22 +47,22 @@ namespace LearningNimGame
         }
 
         /// <summary>
-        /// Runs the logic for an AI to make a move. If the AI has not played enough games
-        /// it will simply pick a random move using NimLogic.ChooseRandomMoveWithingameConstraints.
-        /// Otherwise it will create a list of BoardStates from BoardStateCatalog that 
-        /// are valid moves, and choose the best one.
+        /// Runs the logic for an AI to make a move. Iterates through all valid moves and returns the highest weighted possible move.
         /// </summary>
         /// <param name="currentState">Current Game's BoardState</param>
         /// <returns>The AI's chosen move, guaranteed to be a valid move.</returns>
         public BoardState TakeTurn(BoardState currentState)
         {
-            BoardState moveToMake = null;    
+            BoardState moveToMake = null;
+            Random random = new Random();
             foreach(var b in NimLogic.GetAllValidMoves(currentState, BoardStateCatalog))
             {
                 if (moveToMake == null)
                     moveToMake = b;
                 else if (b.StateValue > moveToMake.StateValue)
                     moveToMake = new BoardState(b);
+                else if (b.StateValue == moveToMake.StateValue)
+                    if(random.Next(2) == 0) moveToMake = new BoardState(b);
             }
 
             if (moveToMake == null)

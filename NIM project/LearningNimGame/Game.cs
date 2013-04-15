@@ -69,7 +69,7 @@ namespace LearningNimGame
             }
             while (GameState.TotalLeft > 0);
 
-            NimAI_1.ApplyGameDataToCatalog(MoveList);
+            NimAI_1.IntegrateIntoCatalog(MoveList);
         }
 
         public void RunAIVersusAIGame()
@@ -107,8 +107,10 @@ namespace LearningNimGame
             }
             while (GameState.TotalLeft > 0);
 
-            NimAI_1.ApplyGameDataToCatalog(MoveList);
-            NimAI_2.ApplyGameDataToCatalog(MoveList);
+            NimLogic.WeightBoardStates(ref MoveList);
+
+            NimAI_1.IntegrateIntoCatalog(MoveList);
+            NimAI_2.IntegrateIntoCatalog(MoveList);
         }
 
         public void GameOver(string winner)
