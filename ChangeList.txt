@@ -598,3 +598,10 @@ Added RunPlayerVersusAIGame and RunAIVersusAIGame to Game.cs, fixed Game.cs to u
 Program to use NimGameConsoleLoop rather than calling Game.Start(), which has since been removed.
 
 :End
+
+4:55PM 4/15/2013 - Kevin Teynor
+
+Start:
+
+Added another GetAllValidMoves() function in NimLogic.cs that takes in an existing list of weighted moves-- which allows for the next change:
+Cut down the TakeTurn() function in NimLearningAI.cs to use the GetAllValidMoves() created above to cut down on steps.

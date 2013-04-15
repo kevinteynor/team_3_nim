@@ -12,14 +12,14 @@ namespace LearningNimGame
 
         public NimLearningAI()
         {
-            Refresh();
+            Reset();
         }
 
         /// <summary>
         /// Resents the AI's BoardStateCatalog and GamesPlayed, reseting it to a
         /// completely "dumb" state.
         /// </summary>
-        public void Refresh()
+        public void Reset()
         {
             BoardStateCatalog = new List<BoardState>();
 
@@ -53,7 +53,7 @@ namespace LearningNimGame
         }
 
         /// <summary>
-        /// This method takes in all BoardStates that occured in a game, in reverse order,
+        /// Takes in all BoardStates that occured in a game, in reverse order,
         /// and applies a weight to each, and then applies that new data to the corresponding state
         /// in BoardStateCatalog.
         /// </summary>
@@ -84,20 +84,17 @@ namespace LearningNimGame
         /// <returns>The AI's chosen move, guaranteed to be a valid move.</returns>
         public BoardState TakeTurn(BoardState currentState)
         {
-            if (GamesPlayed <= 50)
-                return NimLogic.ChooseRandomMoveWithinGameConstraints(currentState);
-
-            IEnumerable<BoardState> validMoves = NimLogic.GetAllValidMoves(currentState);
-
-            List<BoardState> mostValuableMoves = GetCatalogBoardStates(validMoves.ToList<BoardState>());
-
-            BoardState moveToMake = new BoardState(mostValuableMoves[0]);
-
-            for (int i = 1; i < mostValuableMoves.Count; ++i)
+            BoardState moveToMake = null;    
+            foreach(var b in NimLogic.GetAllValidMoves(currentState, BoardStateCatalog))
             {
-                if (mostValuableMoves[i].StateValue > moveToMake.StateValue)
-                    moveToMake = new BoardState(mostValuableMoves[i]);
+                if (moveToMake == null)
+                    moveToMake = b;
+                else if (b.StateValue > moveToMake.StateValue)
+                    moveToMake = new BoardState(b);
             }
+
+            if (moveToMake == null)
+                throw new Exception("No valid moves-- board state has to be <0, 0, 0>, at which point this method should not have been called.");
 
             return moveToMake;
         }

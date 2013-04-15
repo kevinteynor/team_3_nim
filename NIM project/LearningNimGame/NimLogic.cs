@@ -115,5 +115,14 @@ namespace LearningNimGame
                     yield return b;
             }
         }
+
+        public static IEnumerable<BoardState> GetAllValidMoves(BoardState currentState, List<BoardState> weightedStateList)
+        {
+            foreach (var bs in weightedStateList)
+            {
+                if (IsMoveValid(currentState, bs))
+                    yield return bs;
+            }
+        }
     }
 }
