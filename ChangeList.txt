@@ -264,11 +264,47 @@ it's body simpler and more straight-forward.
 
 :End
 
+
 2:00PM 4/15/2013 - Justin Ward
 
 Start:
 
 I added NimLearningAI.cs to be a class representing an AI logic, and to contain all that pertain to the AI's actions. These
 methods will be moved from their current location in Game.cs.
+
+:End
+
+
+2:05PM 4/15/2013 - Justin Ward
+
+Start:
+
+    public class NimLearningAI
+    {
+        private int GamesPlayed = 0;
+        List<BoardState> BoardStateCatalog;
+
+        public NimLearningAI()
+        {
+            Refresh();
+        }
+
+        /// <summary>
+        /// Resents the AI's BoardStateCatalog and GamesPlayed, reseting it to a
+        /// completely "dumb" state.
+        /// </summary>
+        public void Refresh()
+        {
+            BoardStateCatalog = new List<BoardState>();
+
+            foreach (var b in NimLogic.EveryPossibleBoardState())
+                BoardStateCatalog.Add(b);
+
+            GamesPlayed = 0;
+        }
+    }
+
+Added a method to NimLearningAI.cs named Refresh() which resets the AI to a "Dumb" state, this is
+also used to initialize the AI on creation.
 
 :End
