@@ -306,6 +306,8 @@ namespace LearningNimGame
             Console.WriteLine(winner + " won.");
             Console.WriteLine("Any Key to Continue");
         }
+
+        //Replaced by ApplyGameDataToCatalog in NimLearningAI.cs
         public void IncorperateData()
         {
             int sign = TempList.Count % 2 == 0 ? 1 : -1;
