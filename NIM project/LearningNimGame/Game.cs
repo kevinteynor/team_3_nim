@@ -64,6 +64,8 @@ namespace LearningNimGame
             }
             else return false;
         }
+
+        //Replaced by ForceConsoleIntegerInput in UserConsoleInput.cs
         private static int ForceConsoleChoice(string prompt, string errormsg, int min, int max)
         {
             Console.WriteLine(prompt);

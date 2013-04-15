@@ -310,7 +310,7 @@ also used to initialize the AI on creation.
 :End
 
 
-2:30PM 4/15/2013
+2:30PM 4/15/2013 - Justin Ward
 
 Start:
 
@@ -364,7 +364,7 @@ AI needs a list of States which it uses to make moves, therefore only the AI nee
 :End
 
 
-2:40PM 4/15/2013
+2:40PM 4/15/2013 - Justin Ward
 
 Start:
 
@@ -397,7 +397,7 @@ BoardStates.
 
 :End
 
-3:00PM 4/15/2013
+3:00PM 4/15/2013 - Justin Ward
 
 Start:
 
@@ -437,7 +437,7 @@ and takeTurn in Game.cs.
 
 :End
 
-3:05PM 4/15/2013
+3:05PM 4/15/2013 - Justin Ward
 
 Start:
 
@@ -446,5 +446,42 @@ Input from the User. This is Logical Cohesion but is a step toward serperating o
 to gather input anywhere else without creating unneeded objects. A superclass could be extracted from this named UserInput,
 which would then be extended by different classes based upon their UI used. As our concern now is not using a different UI, we'll
 save that change for later.
+
+:End
+
+
+3:20PM 4/15/2013 - Justin Ward
+
+Start:
+
+Added a Method: ForceConsoleIntegerInput in UserConsoleInput.cs. This method forces the user to input an int
+value between a specified minimum and maximum. This method was previously present within Game.cs but was moved
+to a more logical location.
+
+	/// <summary>
+        /// Forces the user to provide valid input, otherwise throws exception.
+        /// </summary>
+        /// <param name="prompt">String to be printed to prompt user for input.</param>
+        /// <param name="errormsg">Message that displays when invalid input is provided</param>
+        /// <param name="minChoice">Minimum value input</param>
+        /// <param name="maxChoice">Maximum value input</param>
+        /// <returns>Acceptable integer input</returns>
+        public static int ForceConsoleIntegerInput(string prompt, string errormsg,
+            int minChoice, int maxChoice)
+        {
+            Console.WriteLine(prompt);
+
+            int val = -1;
+            do
+            {
+                if (Int32.TryParse(Console.ReadLine(), out val))
+                    if (val >= minChoice && val <= maxChoice)
+                        return val;
+                    else Console.WriteLine(errormsg);
+                else Console.WriteLine(errormsg);
+            } while (val < minChoice || val > maxChoice);
+
+            throw new Exception("Input choice failed, unable to force acceptable choice.");
+        }
 
 :End
