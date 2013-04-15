@@ -225,3 +225,41 @@ or for it's original use of compiling a list of all BoardStates.
         }
 
 :End
+
+1:45PM 4/15/2013 - Justin Ward
+
+Start:
+
+        //Replaced by GetAllValidMoves in NimLogic.cs
+        //private List<BoardState> compileListOfValidMoves()
+        //{
+        //    List<BoardState> ret = new List<BoardState>();
+
+        //    for (int i = 0; i < BoardData.Length; i++)
+        //        if (NimLogic.IsMoveValid(currentBoard, BoardData[i]))
+        //            ret.Add(BoardData[i]);
+
+        //    return ret;
+        //}
+
+I moved compileListOfValidMoves() from Game.cs to NimLogic.cs as GetAllValidMoves. This required me to add a parameter
+for the currentBoardState, making the purpose of the method more apparent. I also changed the return type from List<BoardState>
+to an IEnumberable<BoardState> based upon the rule of favoring Iterators over Lists. The change of GetAllPossibleStates from
+being a member of BoardState to being a member of NimLogic, allows me to now use that method within GetAllValidMoves, making
+it's body simpler and more straight-forward.
+
+        /// <summary>
+        /// Used to determine all possible moves based upon the current BoardState
+        /// </summary>
+        /// <param name="currentState">Current Game's BoardState</param>
+        /// <returns>Each valid move from the current state</returns>
+        public static IEnumerable<BoardState> GetAllValidMoves(BoardState currentState)
+        {
+            foreach (var b in EveryPossibleBoardState())
+            {
+                if (IsMoveValid(currentState, b))
+                    yield return b;
+            }
+        }
+
+:End

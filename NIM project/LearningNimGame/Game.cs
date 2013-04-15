@@ -214,19 +214,25 @@ namespace LearningNimGame
             takeTurn(chooseBestTurn());
         }
 
-        private List<BoardState> compileListOfValidMoves()
-        {
-            List<BoardState> ret = new List<BoardState>();
+        //Replaced by GetAllValidMoves in NimLogic.cs
+        //private List<BoardState> compileListOfValidMoves()
+        //{
+        //    List<BoardState> ret = new List<BoardState>();
 
-            for (int i = 0; i < BoardData.Length; i++)
-                if (NimLogic.IsMoveValid(currentBoard, BoardData[i]))
-                    ret.Add(BoardData[i]);
+        //    for (int i = 0; i < BoardData.Length; i++)
+        //        if (NimLogic.IsMoveValid(currentBoard, BoardData[i]))
+        //            ret.Add(BoardData[i]);
 
-            return ret;
-        }
+        //    return ret;
+        //}
+
         private BoardState chooseBestTurn()
         {
-            List<BoardState> possibilities = compileListOfValidMoves();
+            List<BoardState> possibilities = new List<BoardState>();
+            foreach (var b in NimLogic.GetAllValidMoves(currentBoard))
+            {
+                possibilities.Add(b);
+            }
 
             if (possibilities.Count == 0)
                 return NimLogic.ChooseRandomMoveWithinGameConstraints(currentBoard);

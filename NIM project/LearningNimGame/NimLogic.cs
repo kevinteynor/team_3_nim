@@ -101,5 +101,19 @@ namespace LearningNimGame
                 }
             }
         }
+
+        /// <summary>
+        /// Used to determine all possible moves based upon the current BoardState
+        /// </summary>
+        /// <param name="currentState">Current Game's BoardState</param>
+        /// <returns>Each valid move from the current state</returns>
+        public static IEnumerable<BoardState> GetAllValidMoves(BoardState currentState)
+        {
+            foreach (var b in EveryPossibleBoardState())
+            {
+                if (IsMoveValid(currentState, b))
+                    yield return b;
+            }
+        }
     }
 }
