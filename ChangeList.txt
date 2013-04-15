@@ -263,3 +263,12 @@ it's body simpler and more straight-forward.
         }
 
 :End
+
+2:00PM 4/15/2013 - Justin Ward
+
+Start:
+
+I added NimLearningAI.cs to be a class representing an AI logic, and to contain all that pertain to the AI's actions. These
+methods will be moved from their current location in Game.cs.
+
+:End
