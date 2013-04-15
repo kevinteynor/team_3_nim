@@ -71,3 +71,83 @@ public static bool IsMoveValid(BoardState currentState, BoardState proposedState
 	}
 
 :End
+
+12:51PM 4/15/2013 - Justin Ward
+
+Start:
+
+//Moved to NimLogic as ChooseRandomMoveWithinGameConstraints(BoardState currentBoard)
+//private BoardState chooseRandomMove()
+//{
+//    BoardState newState = new BoardState(currentBoard);
+//    bool removed = false;
+//    do
+//    {
+//        int row = random.Next(0, 3);
+//        if (row == 0)
+//        {
+//            if (newState.RowACount <= 0)
+//                continue;
+//            newState.RowACount -= random.Next(1, newState.RowACount + 1);
+//            removed = true;
+//        }
+//        else if (row == 1)
+//        {
+//            if (newState.RowBCount <= 0)
+//                continue;
+//            newState.RowBCount -= random.Next(1, newState.RowBCount + 1);
+//            removed = true;
+//        }
+//        else if (row == 2)
+//        {
+//            if (newState.RowCCount <= 0)
+//                continue;
+//            newState.RowCCount -= random.Next(1, newState.RowCCount + 1);
+//            removed = true;
+//        }
+//    } while (!removed);
+//    return newState;
+//}
+
+Moved chooseRandomMove from Game.cs to NimLogic.cs as ChooseRandomMoveWithinGameConstaints.
+This is a more logical location for this method.This method must apply the rules of Nim and therefore 
+logically belongs in NimLogic.cs. Another viable location for this method would be within an AI class,
+as it is likely that nothing else would need to Choose a ran
+
+/// <summary>
+/// Returns a random move that is possible from the currentBoard and valid
+/// according to the rules of Nim.
+/// </summary>
+/// <param name="currentBoard">The state of the current Game Board</param>
+/// <returns>A new randomly chosen BoardState</returns>
+public static BoardState ChooseRandomMoveWithinGameConstraints(BoardState currentBoard)
+    {
+        BoardState validRandomMove = new BoardState(currentBoard);
+        Random randomGen = new Random();
+
+        do
+        {
+            int randomRow = randomGen.Next(0, 3);
+
+            if (randomRow == 0)
+            {
+                if (validRandomMove.RowACount <= 0) continue;
+                else validRandomMove.RowACount -= randomGen.Next(1, validRandomMove.RowACount + 1);
+            }
+            else if (randomRow == 1)
+            {
+                if (validRandomMove.RowBCount <= 0) continue;
+                else validRandomMove.RowBCount -= randomGen.Next(1, validRandomMove.RowBCount + 1);
+            }
+            else if (randomRow == 2)
+            {
+                if (validRandomMove.RowCCount <= 0) continue;
+                else validRandomMove.RowCCount -= randomGen.Next(1, validRandomMove.RowCCount + 1);
+            }
+        }
+        while (validRandomMove.Equals(currentBoard) || !NimLogic.IsMoveValid(currentBoard, validRandomMove));
+
+        return validRandomMove;
+    }
+
+:End

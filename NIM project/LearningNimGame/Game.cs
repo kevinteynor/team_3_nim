@@ -240,40 +240,39 @@ namespace LearningNimGame
 
             return mostValuable[random.Next(0, mostValuable.Count)];
         }
-        private BoardState chooseRandomMove()
-        {
-            BoardState newState = new BoardState(currentBoard);
 
-            bool removed = false;
-
-            do
-            {
-                int row = random.Next(0, 3);
-                if (row == 0)
-                {
-                    if (newState.RowACount <= 0)
-                        continue;
-                    newState.RowACount -= random.Next(1, newState.RowACount + 1);
-                    removed = true;
-                }
-                else if (row == 1)
-                {
-                    if (newState.RowBCount <= 0)
-                        continue;
-                    newState.RowBCount -= random.Next(1, newState.RowBCount + 1);
-                    removed = true;
-                }
-                else if (row == 2)
-                {
-                    if (newState.RowCCount <= 0)
-                        continue;
-                    newState.RowCCount -= random.Next(1, newState.RowCCount + 1);
-                    removed = true;
-                }
-            } while (!removed);
-
-            return newState;
-        }
+        //Moved to NimLogic as ChooseRandomMoveWithinGameConstraints(BoardState currentBoard)
+        //private BoardState chooseRandomMove()
+        //{
+        //    BoardState newState = new BoardState(currentBoard);
+        //    bool removed = false;
+        //    do
+        //    {
+        //        int row = random.Next(0, 3);
+        //        if (row == 0)
+        //        {
+        //            if (newState.RowACount <= 0)
+        //                continue;
+        //            newState.RowACount -= random.Next(1, newState.RowACount + 1);
+        //            removed = true;
+        //        }
+        //        else if (row == 1)
+        //        {
+        //            if (newState.RowBCount <= 0)
+        //                continue;
+        //            newState.RowBCount -= random.Next(1, newState.RowBCount + 1);
+        //            removed = true;
+        //        }
+        //        else if (row == 2)
+        //        {
+        //            if (newState.RowCCount <= 0)
+        //                continue;
+        //            newState.RowCCount -= random.Next(1, newState.RowCCount + 1);
+        //            removed = true;
+        //        }
+        //    } while (!removed);
+        //    return newState;
+        //}
 
         private void takeTurn(BoardState newBoardState)
         {
