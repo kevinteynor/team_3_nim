@@ -30,6 +30,29 @@ namespace LearningNimGame
         }
 
         /// <summary>
+        /// Returns a list of moves from BoardStateCatalog which match
+        /// one of the validMoves passed in as a parameter.
+        /// </summary>
+        /// <param name="validMoves">A list of all valid moves from the current BoardState</param>
+        /// <returns>An equivelant list from BoardStateCatalog</returns>
+        private List<BoardState> GetCatalogBoardStates(List<BoardState> validMoves)
+        {
+            List<BoardState> valuableMoves = new List<BoardState>();
+
+            for (int i = 0; i < BoardStateCatalog.Count; ++i)
+            {
+                for (int j = 0; j < validMoves.Count; ++j)
+                {
+                    if (BoardStateCatalog[i].Equals(validMoves[j]))
+                    {
+                        valuableMoves.Add(new BoardState(BoardStateCatalog[i]));
+                    }
+                }
+            }
+            return valuableMoves;
+        }
+
+        /// <summary>
         /// This method takes in all BoardStates that occured in a game, in reverse order,
         /// and applies a weight to each, and then applies that new data to the corresponding state
         /// in BoardStateCatalog.

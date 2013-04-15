@@ -362,3 +362,37 @@ AI needs a list of States which it uses to make moves, therefore only the AI nee
         }
 
 :End
+
+
+2:40PM 4/15/2013
+
+Start:
+
+Added a Method to NimLearningAI.cs which takes in a list of BoardStates and returns an equivelant list,
+but with BoardStates taken from BoardStateCatalog, the List the AI uses to store StateValues for all
+BoardStates.
+
+        /// <summary>
+        /// Returns a list of moves from BoardStateCatalog which match
+        /// one of the validMoves passed in as a parameter.
+        /// </summary>
+        /// <param name="validMoves">A list of all valid moves from the current BoardState</param>
+        /// <returns>An equivelant list from BoardStateCatalog</returns>
+        private List<BoardState> GetCatalogBoardStates(List<BoardState> validMoves)
+        {
+            List<BoardState> valuableMoves = new List<BoardState>();
+
+            for (int i = 0; i < BoardStateCatalog.Count; ++i)
+            {
+                for (int j = 0; j < validMoves.Count; ++j)
+                {
+                    if (BoardStateCatalog[i].Equals(validMoves[j]))
+                    {
+                        valuableMoves.Add(new BoardState(BoardStateCatalog[i]));
+                    }
+                }
+            }
+            return valuableMoves;
+        }
+
+:End
