@@ -436,3 +436,15 @@ and takeTurn in Game.cs.
 
 
 :End
+
+3:05PM 4/15/2013
+
+Start:
+
+Added a class named UserConsoleInput which will be a static class for containing all methods required to gather Console
+Input from the User. This is Logical Cohesion but is a step toward serperating our Game from the Console. This also allows us
+to gather input anywhere else without creating unneeded objects. A superclass could be extracted from this named UserInput,
+which would then be extended by different classes based upon their UI used. As our concern now is not using a different UI, we'll
+save that change for later.
+
+:End
