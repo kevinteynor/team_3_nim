@@ -570,3 +570,13 @@ NOTE: This method is messy and contains two do-while's and two switches. I'm sur
 but this works and creates a an entirely self-contained method of gathering the user's turn.
 
 :End
+
+3:40 4/15/2013 - Justin Ward
+
+Start:
+
+Added a class named NimGameConsoleLoop. This class will replace Game.cs' RunMainMenu Method. This is another step
+from seperating our Game from depending on Console. This class will contain a method which will return a boolean and
+be used to create a loop in the main menu.
+
+:End
