@@ -209,6 +209,7 @@ namespace LearningNimGame
             // make sure choice is valid.
 
         }        
+        //Replaced by TakeTurn in NimLearningAI.cs
         private void RunComputerTurn()
         {
             takeTurn(chooseBestTurn());
@@ -226,6 +227,7 @@ namespace LearningNimGame
         //    return ret;
         //}
 
+        //Replaced by GetCatalogBoardStates in NimLearningAI.cs
         private BoardState chooseBestTurn()
         {
             List<BoardState> possibilities = new List<BoardState>();
