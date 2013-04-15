@@ -31,17 +31,18 @@ namespace LearningNimGame
             this.Frequency = b.Frequency;
         }
 
-        public bool checkIfValid(BoardState change)
-        {
-            if (this.RowACount > change.RowACount && (change.RowBCount == this.RowBCount && change.RowCCount == this.RowCCount))
-                return true;
-            if (this.RowBCount > change.RowBCount && (change.RowACount == this.RowACount && change.RowCCount == this.RowCCount))
-                return true;
-            if (this.RowCCount > change.RowCCount && (change.RowACount == this.RowACount && change.RowBCount == this.RowBCount))
-                return true;
+        //Moved to NimLogic.cs as IsMoveValid(BoardState bs1, BoardState bs2);
+        //public bool checkIfValid(BoardState change)
+        //{
+        //    if (this.RowACount > change.RowACount && (change.RowBCount == this.RowBCount && change.RowCCount == this.RowCCount))
+        //        return true;
+        //    if (this.RowBCount > change.RowBCount && (change.RowACount == this.RowACount && change.RowCCount == this.RowCCount))
+        //        return true;
+        //    if (this.RowCCount > change.RowCCount && (change.RowACount == this.RowACount && change.RowBCount == this.RowBCount))
+        //        return true;
 
-            return false;
-        }
+        //    return false;
+        //}
 
         public void ApplyNewData(BoardState state)
         {

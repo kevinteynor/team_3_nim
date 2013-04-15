@@ -194,7 +194,7 @@ namespace LearningNimGame
                }
                 
                 
-            }while(!currentBoard.checkIfValid(playerChoice));
+            }while(!NimLogic.IsMoveValid(currentBoard, playerChoice));
             #endregion select cells
 
             takeTurn(playerChoice);
@@ -212,7 +212,7 @@ namespace LearningNimGame
             List<BoardState> ret = new List<BoardState>();
 
             for (int i = 0; i < BoardData.Length; i++)
-                if (currentBoard.checkIfValid(BoardData[i]))
+                if (NimLogic.IsMoveValid(currentBoard, BoardData[i]))
                     ret.Add(BoardData[i]);
 
             return ret;
