@@ -222,7 +222,7 @@ namespace LearningNimGame
             List<BoardState> possibilities = compileListOfValidMoves();
 
             if (possibilities.Count == 0)
-                return chooseRandomMove();
+                return NimLogic.ChooseRandomMoveWithinGameConstraints(currentBoard);
 
             List<BoardState> mostValuable = new List<BoardState>();
             mostValuable.Add(possibilities[0]);

@@ -151,3 +151,12 @@ public static BoardState ChooseRandomMoveWithinGameConstraints(BoardState curren
     }
 
 :End
+
+1:20PM 4/15/2013 - Justin Ward
+
+Start: 
+
+I forgot modify Game.cs to use ChooseRandomMoveWithinGameConstraints rather than chooseRandomMove(), due to this
+the previous build is broken.
+
+:End
