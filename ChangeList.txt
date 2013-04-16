@@ -618,3 +618,18 @@ Extracted a "WeightBoardStates()" function into NimLogic, which cut down the boa
 Trimmed IntegrateIntoCatalog() function inside NimLearningAI.cs to use the extracted function.
 
 :End
+
+
+10:45 4/15/2013 - Kevin Teynor
+
+Start:
+
+Changed the way row values are stored inside the BoardState class to be array based.
+	- I left RowACount, RowBCount, RowCCount intact in the form of properties so that we don't need to go through
+	  all of the old code right now to switch it over.
+	- this was done to easily get rid of the gross switch statements inside the GetPlayerTurnInput method inside UserConsoleInput.cs.
+Cleaned the GetPlayerTurnInput method up drastically-- got rid of the two gross switch statements, replaced with one
+	do-while loop and a single input prompt.
+
+
+:End

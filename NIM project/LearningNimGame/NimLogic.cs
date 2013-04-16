@@ -115,6 +115,13 @@ namespace LearningNimGame
                     yield return b;
             }
         }
+
+        /// <summary>
+        /// Used to determine all possible moves based upon the current BoardState
+        /// </summary>
+        /// <param name="currentState">Current Game's BoardState</param>
+        /// <param name="weightedStateList">List to look for possible moves from</param>
+        /// <returns>Each valid move from the provided list</returns>
         public static IEnumerable<BoardState> GetAllValidMoves(BoardState currentState, List<BoardState> weightedStateList)
         {
             foreach (var bs in weightedStateList)

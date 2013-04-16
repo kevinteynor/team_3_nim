@@ -48,55 +48,17 @@ namespace LearningNimGame
             do
             {
                 int row = 0;
-                bool validRow = false;
+                bool validChoice = false;
 
                 do
                 {
                     row = ForceConsoleIntegerInput("Choose a Row(1-3): ", "Invalid Input.", 1, 3);
-
-                    switch (row)
-                    {
-                        case 1:
-                            if (newState.RowACount != 0)
-                                validRow = true;
-                            break;
-                        case 2:
-                            if (newState.RowBCount != 0)
-                                validRow = true;
-                            break;
-                        case 3:
-                            if (newState.RowCCount != 0)
-                                validRow = true;
-                            break;
-                        default:
-                            Console.WriteLine("That row has 0 tokens. ");
-                            validRow = false;
-                            break;
-                    }
+                    validChoice = newState.RowCounts[row - 1] > 0;
                 }
-                while (!validRow);
+                while (!validChoice);
 
-
-                int val = 0;
-
-                switch (row)
-                {
-                    case 1:
-                        val = ForceConsoleIntegerInput("Choose an amount(1-" + currentState.RowACount + "): ",
-                            "Invalid Input.", 1, currentState.RowACount);
-                        newState.RowACount -= val;
-                        break;
-                    case 2:
-                        val = ForceConsoleIntegerInput("Choose an amount(1-" + currentState.RowBCount + "): ",
-                            "Invalid Input.", 1, currentState.RowBCount);
-                        newState.RowBCount -= val;
-                        break;
-                    case 3:
-                        val = ForceConsoleIntegerInput("Choose an amount(1-" + currentState.RowCCount + "): ",
-                            "Invalid Input.", 1, currentState.RowCCount);
-                        newState.RowCCount -= val;
-                        break;
-                }
+                newState.RowCounts[row - 1] -= ForceConsoleIntegerInput("Choose an amount(1-" + currentState.RowCounts[row - 1] + "): ",
+                        "Invalid Input.", 1, currentState.RowCounts[row - 1]);
             }
             while (!NimLogic.IsMoveValid(currentState, newState));
 

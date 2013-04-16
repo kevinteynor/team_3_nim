@@ -7,15 +7,29 @@ namespace LearningNimGame
 {
     public class BoardState
     {
-        public int RowACount { get; set; }
-        public int RowBCount { get; set; }
-        public int RowCCount { get; set; }
+        public int RowACount 
+        { 
+            get { return RowCounts[0]; }
+            set { RowCounts[0] = value; }
+        }
+        public int RowBCount
+        {
+            get { return RowCounts[1]; }
+            set { RowCounts[1] = value; }
+        }
+        public int RowCCount
+        {
+            get { return RowCounts[2]; }
+            set { RowCounts[2] = value; }
+        }
+        public int[] RowCounts { get; set; }
         public int TotalLeft { get { return RowACount + RowBCount + RowCCount; } }
         public int Frequency { get; set; }
         public float StateValue { get; set; }        
 
         public BoardState()
         {
+            RowCounts = new int[3];
             RowACount = 3;
             RowBCount = 5;
             RowCCount = 7;
@@ -24,6 +38,7 @@ namespace LearningNimGame
         }
         public BoardState(BoardState b)
         {
+            this.RowCounts = new int[3];
             this.RowACount = b.RowACount;
             this.RowBCount = b.RowBCount;
             this.RowCCount = b.RowCCount;
