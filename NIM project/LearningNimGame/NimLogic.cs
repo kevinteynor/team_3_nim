@@ -8,42 +8,6 @@ namespace LearningNimGame
     public static class NimLogic
     {
         /// <summary>
-        /// Returns a random move that is possible from the currentBoard and valid
-        /// according to the rules of Nim.
-        /// </summary>
-        /// <param name="currentBoard">The state of the current Game Board</param>
-        /// <returns>A new randomly chosen BoardState</returns>
-        public static BoardState ChooseRandomMoveWithinGameConstraints(BoardState currentBoard)
-        {
-            BoardState validRandomMove = new BoardState(currentBoard);
-            Random randomGen = new Random();
-
-            do
-            {
-                int randomRow = randomGen.Next(0, 3);
-
-                if (randomRow == 0)
-                {
-                    if (validRandomMove.RowACount <= 0) continue;
-                    else validRandomMove.RowACount -= randomGen.Next(1, validRandomMove.RowACount + 1);
-                }
-                else if (randomRow == 1)
-                {
-                    if (validRandomMove.RowBCount <= 0) continue;
-                    else validRandomMove.RowBCount -= randomGen.Next(1, validRandomMove.RowBCount + 1);
-                }
-                else if (randomRow == 2)
-                {
-                    if (validRandomMove.RowCCount <= 0) continue;
-                    else validRandomMove.RowCCount -= randomGen.Next(1, validRandomMove.RowCCount + 1);
-                }
-            }
-            while (validRandomMove.Equals(currentBoard) || !NimLogic.IsMoveValid(currentBoard, validRandomMove));
-
-            return validRandomMove;
-        }
-
-        /// <summary>
         /// In Nim a valid move is defined as removing from 1 to all tokens from 1 row,
         /// this methods verifies that the difference between the first parameter
         /// and the second constitutes a valid move.
@@ -99,20 +63,6 @@ namespace LearningNimGame
                         yield return b;
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Used to determine all possible moves based upon the current BoardState
-        /// </summary>
-        /// <param name="currentState">Current Game's BoardState</param>
-        /// <returns>Each valid move from the current state</returns>
-        public static IEnumerable<BoardState> GetAllValidMoves(BoardState currentState)
-        {
-            foreach (var b in EveryPossibleBoardState())
-            {
-                if (IsMoveValid(currentState, b))
-                    yield return b;
             }
         }
 
