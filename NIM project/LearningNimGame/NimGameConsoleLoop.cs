@@ -15,15 +15,15 @@ namespace LearningNimGame
             Console.WriteLine("Option 2 - AI versus AI");
             Console.WriteLine("Option 3 - Shutdown");
 
-            int menuOption = UserConsoleInput.ForceConsoleIntegerInput("Select an Option: ", "Invalid Input. ", 1, 3);
+            int menuChoiceIndex = UserConsoleInput.ForceConsoleIntegerInput("Select an Option: ", "Invalid Input. ", 1, 3);
 
-            if (menuOption == 1)
+            if (menuChoiceIndex == 1)
             {
                 game.RunPlayerVersusAIGame();
                 Console.ReadLine();
                 return true;
             }
-            else if (menuOption == 2)
+            else if (menuChoiceIndex == 2)
             {
                 int numberOfGames = UserConsoleInput.ForceConsoleIntegerInput("How many games? ", "Invalid Input. ", 1, 1000000);
 

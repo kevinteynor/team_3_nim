@@ -24,12 +24,17 @@ namespace LearningNimGame
         public BoardState()
         {
             RowCounts = new int[3];
+            RowCounts[0] = 3;
+            RowCounts[1] = 5;
+            RowCounts[2] = 7;
             StateValue = 0;
             Frequency = 0;
         }
         public BoardState(BoardState b)
         {
             this.RowCounts = new int[3];
+            for (int r = 0; r < RowCounts.Length; r++)
+                this.RowCounts[r] = b.RowCounts[r];
             this.StateValue = b.StateValue;
             this.Frequency = b.Frequency;
         }

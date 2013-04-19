@@ -1,4 +1,11 @@
 4/19/13 - Kevin Teynor
+- BoardState.cs
+	- fixed constructors to set-up the array of RowCounts so the rest of the code actually works.
+- NimGameConsoleLoop
+	- renamed a variable for clearer intention.
+
+
+4/19/13 - Kevin Teynor
 
 - BoardState.cs
 	- completely removed previous "RowA/B/C" references from all code, replaced with references to the RowCounts[] array.

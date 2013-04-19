@@ -58,7 +58,7 @@ namespace LearningNimGame
             foreach(var b in NimLogic.GetAllValidMoves(currentState, BoardStateCatalog))
             {
                 if (moveToMake == null)
-                    moveToMake = b;
+                    moveToMake = new BoardState(b);
                 else if (b.StateValue > moveToMake.StateValue)
                     moveToMake = new BoardState(b);
                 else if (b.StateValue == moveToMake.StateValue)
