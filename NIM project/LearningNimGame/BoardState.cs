@@ -7,71 +7,52 @@ namespace LearningNimGame
 {
     public class BoardState
     {
-        public int RowACount 
-        { 
-            get { return RowCounts[0]; }
-            set { RowCounts[0] = value; }
-        }
-        public int RowBCount
-        {
-            get { return RowCounts[1]; }
-            set { RowCounts[1] = value; }
-        }
-        public int RowCCount
-        {
-            get { return RowCounts[2]; }
-            set { RowCounts[2] = value; }
-        }
         public int[] RowCounts { get; set; }
-        public int TotalLeft { get { return RowACount + RowBCount + RowCCount; } }
+        public int TotalLeft
+        {
+            get
+            {
+                int value = 0;
+                for (int r = 0; r < RowCounts.Length; r++)
+                    value += RowCounts[r];
+                return value;
+            }
+        }
         public int Frequency { get; set; }
         public float StateValue { get; set; }        
 
         public BoardState()
         {
             RowCounts = new int[3];
-            RowACount = 3;
-            RowBCount = 5;
-            RowCCount = 7;
             StateValue = 0;
             Frequency = 0;
         }
         public BoardState(BoardState b)
         {
             this.RowCounts = new int[3];
-            this.RowACount = b.RowACount;
-            this.RowBCount = b.RowBCount;
-            this.RowCCount = b.RowCCount;
             this.StateValue = b.StateValue;
             this.Frequency = b.Frequency;
         }
 
         public void ApplyNewData(BoardState state)
         {
-            float meanVal = (float)Frequency * StateValue;  // multiply frequency by the value in order to incorporate new data
-            meanVal += state.StateValue;                    // add new data's value to the mean-value.
-            Frequency += 1;                                 // increase the frequency to also represent the newly added data
-            StateValue = meanVal / Frequency;               // re-calculate the new average value.
+            float totalValue = (float)Frequency * StateValue;
+            totalValue += state.StateValue;
+            Frequency++;
+            StateValue = totalValue / Frequency;
         }
 
         public void PrintBoard()
         {
             Console.WriteLine();
 
-            Console.Write("Row 1: (" + RowACount + ") ");
-            for (uint i = 0; i < RowACount; ++i)
-                Console.Write('*');
-            Console.WriteLine();
-
-            Console.Write("Row 2: (" + RowBCount + ") ");
-            for (uint i = 0; i < RowBCount; ++i)
-                Console.Write('*');
-            Console.WriteLine();
-
-            Console.Write("Row 3: (" + RowCCount + ") ");
-            for (uint i = 0; i < RowCCount; ++i)
-                Console.Write('*');
-            Console.WriteLine();
+            for (int r = 0; r < RowCounts.Length; r++)
+            {
+                string line = String.Format("Row {0}: ({1}) ", r + 1, RowCounts[r]);
+                for (int c = 0; c < RowCounts[r]; c++)
+                    line += "*";
+                Console.WriteLine(line);
+            }
         }
         
         public override bool Equals(object obj)
@@ -79,12 +60,17 @@ namespace LearningNimGame
             if (obj.GetType() != typeof(BoardState))
                 return false;
 
-            var bs_obj = obj as BoardState;
+            return this.Equals(obj as BoardState);
 
-            return (bs_obj.RowACount == this.RowACount &&
-                bs_obj.RowBCount == this.RowBCount &&
-                bs_obj.RowCCount == this.RowCCount);
+        }
+        public bool Equals(BoardState board)
+        {
+            if (board.RowCounts.Length != this.RowCounts.Length) return false;
 
+            for(int r = 0; r < RowCounts.Length; r++)
+                if(board.RowCounts[r] != this.RowCounts[r]) return false;
+
+            return true;
         }
         public static bool operator ==(BoardState a, BoardState b)
         {

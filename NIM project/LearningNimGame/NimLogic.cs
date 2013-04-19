@@ -17,25 +17,25 @@ namespace LearningNimGame
         /// <returns>If the move the AI or Player is making is valid</returns>
         public static bool IsMoveValid(BoardState currentState, BoardState proposedState)
         {
-            if (currentState.RowACount > proposedState.RowACount &&
-                proposedState.RowACount >= 0)
+            if (currentState.RowCounts[0] > proposedState.RowCounts[0] &&
+                proposedState.RowCounts[0] >= 0)
             {
-                if (currentState.RowBCount == proposedState.RowBCount &&
-                    currentState.RowCCount == proposedState.RowCCount) return true;
+                if (currentState.RowCounts[1] == proposedState.RowCounts[1] &&
+                    currentState.RowCounts[2] == proposedState.RowCounts[2]) return true;
             }
 
-            if (currentState.RowBCount > proposedState.RowBCount &&
-                proposedState.RowBCount >= 0)
+            if (currentState.RowCounts[1] > proposedState.RowCounts[1] &&
+                proposedState.RowCounts[1] >= 0)
             {
-                if (currentState.RowACount == proposedState.RowACount &&
-                    currentState.RowCCount == proposedState.RowCCount) return true;
+                if (currentState.RowCounts[0] == proposedState.RowCounts[0] &&
+                    currentState.RowCounts[2] == proposedState.RowCounts[2]) return true;
             }
 
-            if (currentState.RowCCount > proposedState.RowCCount &&
-                proposedState.RowCCount >= 0)
+            if (currentState.RowCounts[2] > proposedState.RowCounts[2] &&
+                proposedState.RowCounts[2] >= 0)
             {
-                if (currentState.RowACount == proposedState.RowACount &&
-                    currentState.RowBCount == proposedState.RowBCount) return true;
+                if (currentState.RowCounts[0] == proposedState.RowCounts[0] &&
+                    currentState.RowCounts[1] == proposedState.RowCounts[1]) return true;
             }
 
             return false;
@@ -56,10 +56,9 @@ namespace LearningNimGame
                         BoardState b = new BoardState();
                         b.Frequency = 0;
                         b.StateValue = 0;
-                        b.RowACount = rowA;
-                        b.RowBCount = rowB;
-                        b.RowCCount = rowC;
-
+                        b.RowCounts[0] = rowA;
+                        b.RowCounts[1] = rowB;
+                        b.RowCounts[2] = rowC;
                         yield return b;
                     }
                 }
