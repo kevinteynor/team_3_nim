@@ -11,6 +11,11 @@ namespace LearningNimGame
     {
         BoardState GameState;
 
+        bool Playing
+        {
+            get { return GameState.TotalLeft > 0; }
+        }
+
         NimLearningAI NimAI_1 = new NimLearningAI();
         NimLearningAI NimAI_2 = new NimLearningAI();
 
@@ -67,7 +72,9 @@ namespace LearningNimGame
                 Console.WriteLine("Press Any Key To Continue. ");
                 Console.ReadLine();
             }
-            while (GameState.TotalLeft > 0);
+            while (Playing);
+
+            NimLogic.WeightBoardStates(ref MoveList);
 
             NimAI_1.IntegrateIntoCatalog(MoveList);
         }
@@ -105,7 +112,7 @@ namespace LearningNimGame
                     break;
                 }
             }
-            while (GameState.TotalLeft > 0);
+            while (Playing);
 
             NimLogic.WeightBoardStates(ref MoveList);
 

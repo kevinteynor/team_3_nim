@@ -45,6 +45,7 @@ namespace LearningNimGame
             emptyBoard.RowCounts[0] = 0;
             emptyBoard.RowCounts[1] = 0;
             emptyBoard.RowCounts[2] = 0;
+            emptyBoard.StateValue = -1000;
 
             return emptyBoard;
         }

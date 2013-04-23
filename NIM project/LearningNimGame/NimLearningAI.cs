@@ -64,6 +64,11 @@ namespace LearningNimGame
                     if(random.Next(2) == 0) moveToMake = new BoardState(b);
             }
 
+            if (moveToMake == BoardState.EmptyBoardState())
+            {
+                Console.WriteLine("HELP");
+            }
+
             return moveToMake;
         }
     }

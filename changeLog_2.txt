@@ -3,6 +3,56 @@
 	- Added "EmptyBoardState" function to use in place of null comparisons.
 	- implemented into the LearningAI class.
 
+	- BEFORE:
+		         public BoardState TakeTurn(BoardState currentState)
+				 {
+        		     BoardState moveToMake = null;
+		 
+					 Random random = new Random();
+					 foreach(var b in NimLogic.GetAllValidMoves(currentState, BoardStateCatalog))
+					 {
+        		         if (moveToMake == null)
+        		             moveToMake = new BoardState(b);
+        		         else if (b.StateValue > moveToMake.StateValue)
+							 moveToMake = new BoardState(b);
+						 else if (b.StateValue == moveToMake.StateValue)
+							 if(random.Next(2) == 0) moveToMake = new BoardState(b);
+					 }
+		 
+					if (moveToMake == null)
+						throw new Exception("No valid moves-- board state has to be <0, 0, 0>, at which point this method should not have been called.");
+		 
+					 return moveToMake;
+				 }
+	- AFTER:
+				public static BoardState EmptyBoardState()
+				{
+					BoardState emptyBoard = new BoardState();
+					emptyBoard.RowCounts[0] = 0;
+					emptyBoard.RowCounts[1] = 0;
+					emptyBoard.RowCounts[2] = 0;
+					emptyBoard.StateValue = -1000;
+		
+					return emptyBoard;
+				}
+		
+				public BoardState TakeTurn(BoardState currentState)
+				{
+        		    BoardState moveToMake = BoardState.EmptyBoardState();
+		
+					Random random = new Random();
+					foreach(var b in NimLogic.GetAllValidMoves(currentState, BoardStateCatalog))
+					{
+        		        if (b.StateValue > moveToMake.StateValue)
+							moveToMake = new BoardState(b);
+						else if (b.StateValue == moveToMake.StateValue)
+							if(random.Next(2) == 0) moveToMake = new BoardState(b);
+					}
+					
+					return moveToMake;
+				}
+
+
 4/19/13 - Kevin Teynor
 - BoardState.cs
 	- fixed constructors to set-up the array of RowCounts so the rest of the code actually works.
