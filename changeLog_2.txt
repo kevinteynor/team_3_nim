@@ -1,4 +1,50 @@
 4/23/13 - Kevin Teynor
+- Game.cs
+	- Added class-level property to check if the game is over, instead of directly looking into the board state inside the game loop.
+
+	- BEFORE:
+		public void RunPlayerVersusAIGame()
+        {
+            ...
+            do
+            {
+                ...
+            }
+            while (GameState.TotalLeft > 0);
+        }
+
+        public void RunAIVersusAIGame()
+        {
+            ...
+            do
+            {
+                ...
+            }
+            while (GameState.TotalLeft > 0);
+        }
+	
+	- AFTER: 
+		public void RunPlayerVersusAIGame()
+        {
+            ...
+            do
+            {
+                ...
+            }
+            while (Playing);
+        }
+
+        public void RunAIVersusAIGame()
+        {
+            ...
+            do
+            {
+                ...
+            }
+            while (Playing);
+        }
+
+4/23/13 - Kevin Teynor
 - BoardState.cs
 	- Added "EmptyBoardState" function to use in place of null comparisons.
 	- implemented into the LearningAI class.
