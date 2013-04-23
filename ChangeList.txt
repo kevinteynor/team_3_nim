@@ -633,3 +633,20 @@ Cleaned the GetPlayerTurnInput method up drastically-- got rid of the two gross 
 
 
 :End
+
+4/19/13 - Kevin Teynor
+- BoardState.cs
+	- fixed constructors to set-up the array of RowCounts so the rest of the code actually works.
+- NimGameConsoleLoop
+	- renamed a variable for clearer intention.
+
+
+4/19/13 - Kevin Teynor
+
+- BoardState.cs
+	- completely removed previous "RowA/B/C" references from all code, replaced with references to the RowCounts[] array.
+	- renamed variables inside ApplyNewData() to make meaning easier to interpret.
+	- compressed PrintBoard() function to remove reused code for different rows. Allows scaleability for more than 3 rows.
+	- renamed variables in Equals() to be less confusing.
+	- overrode the Boardstate.Equals(BoardState) for better efficiency, used it in the .Equals(Object) function.
+	- changed equallity checking logic to account for more than a 3-wide board.

@@ -19,7 +19,7 @@ namespace LearningNimGame
             }
         }
         public int Frequency { get; set; }
-        public float StateValue { get; set; }        
+        public float StateValue { get; set; }       
 
         public BoardState()
         {
@@ -37,6 +37,16 @@ namespace LearningNimGame
                 this.RowCounts[r] = b.RowCounts[r];
             this.StateValue = b.StateValue;
             this.Frequency = b.Frequency;
+        }
+
+        public static BoardState EmptyBoardState()
+        {
+            BoardState emptyBoard = new BoardState();
+            emptyBoard.RowCounts[0] = 0;
+            emptyBoard.RowCounts[1] = 0;
+            emptyBoard.RowCounts[2] = 0;
+
+            return emptyBoard;
         }
 
         public void ApplyNewData(BoardState state)

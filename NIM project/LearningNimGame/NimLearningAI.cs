@@ -53,20 +53,16 @@ namespace LearningNimGame
         /// <returns>The AI's chosen move, guaranteed to be a valid move.</returns>
         public BoardState TakeTurn(BoardState currentState)
         {
-            BoardState moveToMake = null;
+            BoardState moveToMake = BoardState.EmptyBoardState();
+
             Random random = new Random();
             foreach(var b in NimLogic.GetAllValidMoves(currentState, BoardStateCatalog))
             {
-                if (moveToMake == null)
-                    moveToMake = new BoardState(b);
-                else if (b.StateValue > moveToMake.StateValue)
+                if (b.StateValue > moveToMake.StateValue)
                     moveToMake = new BoardState(b);
                 else if (b.StateValue == moveToMake.StateValue)
                     if(random.Next(2) == 0) moveToMake = new BoardState(b);
             }
-
-            if (moveToMake == null)
-                throw new Exception("No valid moves-- board state has to be <0, 0, 0>, at which point this method should not have been called.");
 
             return moveToMake;
         }

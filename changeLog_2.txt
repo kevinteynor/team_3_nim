@@ -1,3 +1,8 @@
+4/23/13 - Kevin Teynor
+- BoardState.cs
+	- Added "EmptyBoardState" function to use in place of null comparisons.
+	- implemented into the LearningAI class.
+
 4/19/13 - Kevin Teynor
 - BoardState.cs
 	- fixed constructors to set-up the array of RowCounts so the rest of the code actually works.
