@@ -10,9 +10,13 @@ namespace LearningNimGame
         static void Main(string[] args)
         {
             Game game = new Game();
-            NimGameConsoleLoop loop = new NimGameConsoleLoop();
+            GameConsoleLoop loop = new GameConsoleLoop();
 
-            while (loop.Run(game)) ;
+            loop.AddMenuItem(new MenuItem("Option 1 - Player Vs. AI", game.RunPlayerVersusAIGame, 1));
+            loop.AddMenuItem(new MenuItem("Option 2 - AI Vs. AI", game.RunAIVersusAIGame, 2));
+            loop.AddMenuItem(new MenuItem("Option 3 - Exit", loop.End, 3));
+
+            while (loop.Run()) ;
         }
     }
 }

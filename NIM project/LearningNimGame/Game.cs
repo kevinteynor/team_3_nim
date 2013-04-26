@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Linq;
 using System.Threading;
 
 namespace LearningNimGame
@@ -33,9 +32,11 @@ namespace LearningNimGame
             {
                 GameState = NimAI_1.TakeTurn(GameState);
                 MoveList.Add(GameState);
+
                 Console.WriteLine();
                 GameState.PrintBoard();
                 Console.WriteLine("After AI Turn. Any Key To Continue");
+                
                 Console.ReadLine();
             }
 
@@ -66,6 +67,7 @@ namespace LearningNimGame
                 if (GameState.TotalLeft <= 0)
                 {
                     GameOver("Player");
+                    
                     break;
                 }
 
@@ -77,6 +79,7 @@ namespace LearningNimGame
             NimLogic.WeightBoardStates(ref MoveList);
 
             NimAI_1.IntegrateIntoCatalog(MoveList);
+            Console.ReadLine();
         }
 
         public void RunAIVersusAIGame()
@@ -125,5 +128,7 @@ namespace LearningNimGame
             Console.WriteLine(winner + " Won this game.");
             Console.WriteLine("Any Key to Continue");
         }
+
+        
     }
 }
